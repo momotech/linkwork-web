@@ -3,11 +3,18 @@ import { onMounted } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Loader2, Bot } from 'lucide-vue-next'
 import { useAuth } from '@/composables/useAuth'
+import { SSO_LOGIN_URL } from '@/utils/http'
 
 const { login } = useAuth()
 
 // 页面加载后自动跳转统一 SSO
 onMounted(() => {
+  const target = new URL(SSO_LOGIN_URL, window.location.origin)
+  const samePath = target.origin === window.location.origin && target.pathname === window.location.pathname
+  if (samePath) {
+    return
+  }
+
   // 短暂延迟让用户看到提示
   setTimeout(() => {
     login()
@@ -29,7 +36,7 @@ onMounted(() => {
           <Bot class="w-8 h-8 text-white" />
         </div>
         <div>
-          <CardTitle class="text-2xl font-bold text-zinc-100">AI 机器人平台</CardTitle>
+          <CardTitle class="text-2xl font-bold text-zinc-100">LinkWork</CardTitle>
           <CardDescription class="text-zinc-400 mt-2">正在跳转至统一登录页...</CardDescription>
         </div>
       </CardHeader>
