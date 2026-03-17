@@ -25,6 +25,8 @@ import { useAuth } from '@/composables/useAuth'
 import { useUser } from '@/composables/useUser'
 import { get } from '@/utils/http'
 
+const BYPASS_AUTH_GUARD = import.meta.env.VITE_BYPASS_AUTH_GUARD !== 'false'
+
 async function hasK8sAccess(): Promise<boolean> {
   try {
     const res = await get<boolean>('/api/v1/k8s-monitor/access-check')
@@ -179,7 +181,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, _from, next) => {
-  if (to.meta.public) {
+  if (to.meta.public || BYPASS_AUTH_GUARD) {
     next()
     return
   }
