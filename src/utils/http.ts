@@ -6,8 +6,6 @@
  * - 统一错误处理和响应格式
  */
 
-const SSO_LOGIN_URL = import.meta.env.VITE_SSO_LOGIN_URL || '/login'
-
 export interface ApiResponse<T = any> {
   code: number
   msg: string
@@ -31,8 +29,7 @@ export async function request<T = any>(url: string, options?: RequestInit): Prom
   })
 
   if (res.status === 401) {
-    // Token 过期或未登录，跳转 SSO
-    redirectToSSO()
+    redirectToLogin()
     throw new Error('Unauthorized')
   }
 
@@ -74,10 +71,10 @@ export async function del<T = any>(url: string): Promise<ApiResponse<T>> {
 }
 
 /**
- * 跳转到统一登录页
+ * 跳转到登录页
  */
-export function redirectToSSO() {
-  window.location.href = SSO_LOGIN_URL
+export function redirectToLogin() {
+  if (window.location.pathname !== '/login') {
+    window.location.href = '/login'
+  }
 }
-
-export { SSO_LOGIN_URL }
