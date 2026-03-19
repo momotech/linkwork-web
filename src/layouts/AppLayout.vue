@@ -544,7 +544,7 @@ watch(
       <div class="p-4 border-t border-border/50">
         <span class="text-[10px] text-muted-foreground flex items-center gap-1">
           <Info class="h-3 w-3 shrink-0" /> 如有问题，请前往
-          <a href="https://github.com/hellogroup-oss/LinkWork/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 hover:underline transition-colors cursor-pointer font-medium">Issues</a>
+          <a href="https://github.com/momotech/LinkWork/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 hover:underline transition-colors cursor-pointer font-medium">Issues</a>
         </span>
       </div>
     </aside>

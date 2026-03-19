@@ -1161,7 +1161,7 @@ const getDisplayContent = (event: any) => {
     }
 
     if (data.tool_name === 'Bash' || data.tool_name === 'Shell') {
-      // momo-worker 格式: data.response = { stdout, stderr, ... }
+      // linkwork-worker 格式: data.response = { stdout, stderr, ... }
       // 旧格式: data.tool_response / data.result (字符串)
       const resp = data.response
       let output = ''
@@ -1315,7 +1315,7 @@ const parseTodoData = (event: any) => {
       }
     } else if (type === 'TOOL_RESULT') {
       // TOOL_RESULT 时可能有 newTodos 或 result
-      // momo-worker 格式: data.response.newTodos
+      // linkwork-worker 格式: data.response.newTodos
       let result = data.response || data.tool_response || data.result
       if (typeof result === 'string') {
         result = JSON.parse(result.replace(/'/g, '"'))
