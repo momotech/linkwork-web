@@ -36,14 +36,14 @@ export const parseZzMode = (value: unknown): ZzMode | null => {
   return null
 }
 
+/** 缺失时默认运行模式（兼容历史岗位） */
+const DEFAULT_RUNTIME_MODE: RuntimeMode = 'ALONE'
+
 export const validateRuntimeProfile = (
   source: { runtimeMode?: unknown; zzMode?: unknown; runnerImage?: unknown; image?: unknown },
   context: string
 ): RuntimeProfile => {
-  const runtimeMode = parseRuntimeMode(source.runtimeMode)
-  if (!runtimeMode) {
-    throw new Error(`${context} missing runtimeMode, expected SIDECAR or ALONE`)
-  }
+  const runtimeMode = parseRuntimeMode(source.runtimeMode) ?? DEFAULT_RUNTIME_MODE
 
   const expectedZzMode = ZZ_MODE_BY_RUNTIME[runtimeMode]
   // 历史数据可能缺失/错填 zzMode，前端统一按 runtimeMode 推导，避免误报配置异常。
