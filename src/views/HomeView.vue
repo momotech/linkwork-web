@@ -67,9 +67,7 @@ const fallbackModels: ModelOption[] = [
   { id: 'kimi-k2-5-thinking', name: 'kimi-k2-5-thinking', brand: 'kimi', enabled: true }
 ]
 
-const modelRegistryApi =
-  import.meta.env.VITE_MODEL_REGISTRY_URL ||
-  '/api/v1/models'
+const modelRegistryApi = '/api/v1/models'
 
 const splitCsv = (raw: unknown): string[] =>
   String(raw ?? '')
