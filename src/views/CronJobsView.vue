@@ -50,7 +50,7 @@ const fallbackModels: ModelOption[] = [
   { id: 'kimi-k2-5-thinking', label: 'kimi-k2-5-thinking', brand: 'kimi' },
 ]
 
-const modelRegistryApi = import.meta.env.VITE_MODEL_REGISTRY_URL || '/api/v1/models'
+const modelRegistryApi = '/api/v1/models'
 
 const inferModelBrand = (modelId: string): string => {
   const normalized = modelId.toLowerCase()
