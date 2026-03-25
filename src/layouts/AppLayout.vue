@@ -119,6 +119,15 @@ const pageTitle = computed(() => {
   if (!isDeveloperMode.value && route.path.startsWith('/fleet')) return '历史任务'
   return String(route.meta.title || '仪表盘')
 })
+const watermarkProduct = (import.meta.env.VITE_WATERMARK_PRODUCT || 'LinkWork').trim() || 'LinkWork'
+const watermarkOwner = (import.meta.env.VITE_WATERMARK_OWNER || 'momotech').trim() || 'momotech'
+const watermarkLabel = computed(() => `${watermarkProduct} OSS · ${watermarkOwner}`)
+const watermarkInstance = computed(() => {
+  if (typeof window === 'undefined') {
+    return 'instance: unknown'
+  }
+  return `instance: ${window.location.host || 'local'}`
+})
 
 const setWorkMode = (mode: WorkMode) => {
   if (workMode.value === mode) return
@@ -541,7 +550,12 @@ watch(
           </Transition>
         </nav>
       </ScrollArea>
-      <div class="p-4 border-t border-border/50">
+      <div class="p-4 border-t border-border/50 space-y-2">
+        <div class="text-[10px] text-muted-foreground/90 flex items-center gap-1">
+          <Bot class="h-3 w-3 shrink-0" />
+          <span class="font-mono truncate">{{ watermarkLabel }}</span>
+          <span class="font-mono text-[9px] text-muted-foreground/70 truncate">{{ watermarkInstance }}</span>
+        </div>
         <span class="text-[10px] text-muted-foreground flex items-center gap-1">
           <Info class="h-3 w-3 shrink-0" /> 如有问题，请前往
           <a href="https://github.com/momotech/LinkWork/issues" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary/80 hover:underline transition-colors cursor-pointer font-medium">Issues</a>
