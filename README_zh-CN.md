@@ -82,5 +82,5 @@ docker run -d --name linkwork-web -p 3000:80 \
 
 ## 联动依赖
 
-- 后端默认对接 `linkwork-server` API（通常由 `LinkWork/back` 提供）
+- 后端默认对接 `linkwork-server` API（通常由 `LinkWork/backend` 提供）
 - 运行时依赖浏览器与后端 Cookie/JWT 认证链路

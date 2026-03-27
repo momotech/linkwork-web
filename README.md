@@ -81,5 +81,5 @@ docker run -d --name linkwork-web -p 3000:80 \
 
 ## Dependencies
 
-- Backend APIs are usually provided by `LinkWork/back`
+- Backend APIs are usually provided by `LinkWork/backend`
 - Runtime auth path depends on browser cookie/JWT flow
